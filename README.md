@@ -145,4 +145,10 @@ This repository does not currently include an explicit license file. Consider ad
 
 ---
 
-_Use code with caution._
+# Support me!
+i am a young developer and would love some support! here is my crypto adresses.
+BTC: bc1qcdpk4m36z669z9m9s0m9vykvssw24x20pmaztp
+SOL: JCm3HWkEykKUZteGSvnNeewTKuLvaxYx9NCamkiK7Y9n
+ETH: 0x6202B62B85FC049FE3fEF02F6767D9c96d844A63
+
+# Thanks to everyone!
