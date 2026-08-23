@@ -3,72 +3,146 @@
 # Ledgy - A Free Crypto Trading Bot
 
 Crypto trading bot written using Python 3.9.
-Run your own strategies. Trade, backtest, and live test modes available. Easily integrate exchanges. 
+Run your own strategies. Trade, backtest, and live test modes available. Easily integrate exchanges.
 
-### Installation (Windows)
+---
 
-Follow these steps to set up the project on a Windows machine: 
+## About
+
+Ledgy is a small, focused Python-based crypto trading bot with modes for backtesting, importing historical data, and live trading. Some convenience scripts and one-liners target Windows specifically; the project runs on macOS and Linux as well, but the Windows-only commands are marked and guarded so they won't run on other OSes.
+
+## Requirements
+
+- Python 3.9 (recommended)
+- pip
+- A working exchange API key (if you plan to use live trading)
+- Git (to clone the repo)
+
+It's recommended to use a virtual environment (venv) to avoid installing dependencies globally.
+
+## Installation (Windows)
 
 1. Open Command Prompt or PowerShell in your project folder.
-2. Install the required dependencies: 
+2. Create and activate a virtual environment (recommended):
 
-cmd
+Windows (CMD):
 
-pip install --no-cache-dir -r requirements.txt
+    python -m venv .venv
+    .venv\Scripts\activate
 
-Use code with caution.
+Windows (PowerShell):
 
-### Configuration
+    python -m venv .venv
+    .\.venv\Scripts\Activate.ps1
 
-Before running the bot, you must set up your environment variables: 
+3. Install dependencies:
 
-1. Create a copy of the template file by running this command: 
+    pip install --no-cache-dir -r requirements.txt
 
-cmd
+4. Copy the example environment file and edit it:
 
-copy .env.dist .env
+    copy .env.dist .env
+    (Open .env in a text editor and fill in your settings. Do NOT commit real API keys.)
 
-Use code with caution.
-2. Open the newly created .env file in a text editor and fill in your settings.
+## Installation (macOS / Linux)
 
-### Usage
+1. Open a terminal in the project folder.
+2. Create and activate a virtual environment:
 
-To launch the bot on Windows, use the python command followed by the script name: 
+    python3 -m venv .venv
+    source .venv/bin/activate
 
-* Standard execution: 
+3. Install dependencies:
 
-cmd
+    pip install --no-cache-dir -r requirements.txt
 
-python main.py
+4. Copy the example environment file and edit it:
 
-Use code with caution.
-* Set a particular symbol pair by passing an argument: 
+    cp .env.dist .env
+    (Open .env in a text editor and fill in your settings. Do NOT commit real API keys.)
 
-cmd
+## Configuration
 
-python main.py BTC_EUR
+The project uses a `.env` file for configuration. Copy `.env.dist` to `.env` and set values there. Example (do NOT use real keys in examples):
 
-Use code with caution.
-* Override an environment parameter on the fly: 
+    API_KEY=your_exchange_api_key_here
+    API_SECRET=your_exchange_api_secret_here
+    MODE=backtest
 
-  * Using Command Prompt (CMD): 
+Make sure `.env` is listed in `.gitignore` so secrets are never committed.
 
-cmd
+## Usage (Windows)
 
-set MODE=live&& python main.py BTC_EUR
+Standard execution:
 
-Use code with caution.
-  * Using PowerShell: 
+    python main.py
 
-powershell
+Set a particular symbol pair:
 
-$env:MODE="live"; python main.py BTC_EUR
+    python main.py BTC_EUR
 
-Use code with caution.
+Override an environment parameter on the fly (CMD):
 
-### Available Modes
+    set MODE=live&& python main.py BTC_EUR
 
-* "trade" – Trade based on historical candlesticks.
-* "live" – Live trade in real-time through WebSockets.
-* "backtest" – Test a strategy against historical data for a given symbol pair and period.
-* "import" – Import datasets from exchanges for a given symbol pair and period.
+Override an environment parameter on the fly (PowerShell):
+
+    $env:MODE="live"; python main.py BTC_EUR
+
+There is also a Windows launcher script included for convenience: `run-windows.bat` (this is Windows-only).
+
+## Usage (macOS / Linux)
+
+Standard execution:
+
+    python3 main.py
+
+Set a particular symbol pair:
+
+    python3 main.py BTC_EUR
+
+Override an environment parameter on the fly (Unix shell):
+
+    MODE=live python3 main.py BTC_EUR
+
+If a specific helper script or command is Windows-only, the code includes runtime guards so the Windows-only step is skipped when running on macOS/Linux. When a Windows-only action is skipped, the bot prints a clear message explaining that the step is Windows-only.
+
+## Windows-only notes
+
+- One or more convenience scripts/commands in this repository are Windows-specific. They are documented in the Windows section above and are guarded in the code so they do not run on other platforms.
+- If you need to run the Windows-only steps on non-Windows platforms, you must either run them in a Windows environment (VM or WSL where appropriate) or implement the equivalent Unix commands.
+
+## Safety and live trading
+
+Live trading is powerful and potentially destructive. The repo includes a `MODE` setting that controls behavior (trade/backtest/live/import). For extra safety:
+
+- Use `MODE=backtest` or `MODE=import` for testing.
+- Require an explicit confirmation flag for live trading (for example, `--confirm-live`) if you plan to enable the bot to place real orders. If you want, I can add that flag to main.py.
+- Never commit API keys. Use environment variables or a secure secrets manager for production.
+
+## Cross-platform tips
+
+- Use the provided launcher scripts for each OS: `run-windows.bat` (Windows) and `run-unix.sh` (macOS/Linux). The Unix script is included and marked executable.
+- Guard platform-specific imports in your code, e.g.:
+
+    import platform
+    import sys
+
+    def is_windows():
+        return platform.system() == "Windows" or sys.platform.startswith("win")
+
+    if is_windows():
+        # import or run windows-only modules/commands here
+        pass
+
+## Contributing
+
+If you'd like to contribute, please open an issue or pull request. Consider adding tests or improving documentation. A `CONTRIBUTING.md` and `CODE_OF_CONDUCT` would be helpful to accept contributions smoothly.
+
+## License
+
+This repository does not currently include an explicit license file. Consider adding an open-source license (for example, MIT) if you want to allow reuse and contributions.
+
+---
+
+_Use code with caution._
