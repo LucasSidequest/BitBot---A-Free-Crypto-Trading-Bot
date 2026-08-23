@@ -1,5 +1,5 @@
 <img width="1536" height="1024" alt="2026_08_23_0qd_Kleki" src="https://github.com/user-attachments/assets/8cc6b682-2626-4b5f-a55e-27b8a84205a0" />
-### Ledgy - A Free Crypto Trading Bot
+# Ledgy - A Free Crypto Trading Bot
 
 Crypto trading bot written using Python 3.9.
 Run your own strategies. Trade, backtest, and live test modes available. Easily integrate exchanges. 
