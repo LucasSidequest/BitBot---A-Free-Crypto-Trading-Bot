@@ -1,4 +1,4 @@
-### BitBot - A Free Crypto Trading Bot
+### Ledgy - A Free Crypto Trading Bot
 
 Crypto trading bot written using Python 3.9.
 Run your own strategies. Trade, backtest, and live test modes available. Easily integrate exchanges. 
